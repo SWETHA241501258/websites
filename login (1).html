@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+</head>
+<body bgcolor="#FBFBFF">
+    <center>
+        <h2><font color="blue">Login Form</font></h2>
+        <form>
+            <table cellpadding="8">
+                <tr>
+                    <td><b>Email:</b></td>
+                    <td><input type="text" id="email" placeholder="Enter your email"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><span id="emailError" style="color:red;"></span></td>
+                </tr>
+                <tr>
+                    <td><b>Password:</b></td>
+                    <td><input type="password" id="password" placeholder="Enter your password"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><span id="passError" style="color:red;"></span></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <button type="button" onclick="loginValidate()">Login</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </center>
+
+    <script>
+        console.log("JS file connected successfully");
+
+        function loginValidate() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var emailError = document.getElementById("emailError");
+            var passError = document.getElementById("passError");
+
+            emailError.innerText = "";
+            passError.innerText = "";
+
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (email === "") {
+                emailError.innerText = "Email is required";
+                return false;
+            }
+            if (!emailPattern.test(email)) {
+                emailError.innerText = "Invalid email format";
+                return false;
+            }
+            if (password === "") {
+                passError.innerText = "Password is required";
+                return false;
+            }
+            if (password.length < 6) {
+                passError.innerText = "Password must be at least 6 characters";
+                return false;
+            }
+
+            alert("Login Successful!");
+            window.location.href = "index.html"; // redirect after successful login
+            return true;
+        }
+    </script>
+</body>
+</html>
